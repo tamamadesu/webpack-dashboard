@@ -4,6 +4,7 @@
 var webpack = require("webpack");
 var net = require("net");
 var SocketIOClient = require("socket.io-client");
+var color    = require("colors");
 
 function noop() {}
 
@@ -45,7 +46,7 @@ DashboardPlugin.prototype.apply = function(compiler) {
       value: "Compiling"
     }, {
       type: "progress",
-      value: percent
+      value: color.green(percent)
     }, {
       type: "operations",
       value: msg + getTimeMessage(timer)

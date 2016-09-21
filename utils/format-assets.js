@@ -1,6 +1,7 @@
 "use strict";
 
 var filesize = require('filesize');
+var color    = require("colors");
 
 function formatAssets(stats) {
   var json = stats.toJson();
@@ -26,12 +27,12 @@ function printAssets(tree) {
     assets.forEach(function(asset) {
       if ( asset.name.indexOf('hot-update') < 0 ) {
         total += asset.size;
-        output.push([asset.name, filesize(asset.size)]);
+        output.push([color.magenta(asset.name), color.cyan(filesize(asset.size))]);
       }
     });
   });
 
-  output.push(['Total', filesize(total)]);
+  output.push([color.gray('Total'), color.cyan(filesize(total))]);
 
   return output;
 }

@@ -2,6 +2,7 @@
 "use strict";
 
 var blessed = require("blessed");
+var color1  = require("colors");
 
 var formatOutput = require("../utils/format-output.js");
 var formatModules = require("../utils/format-modules.js");
@@ -50,7 +51,7 @@ Dashboard.prototype.setData = function(dataArr) {
         break;
       }
       case "operations": {
-        self.operations.setContent(data.value);
+        self.operations.setContent(color1.green(data.value));
         break;
       }
       case "status": {
@@ -243,7 +244,7 @@ Dashboard.prototype.layoutStatus = function() {
       left: 1,
     },
     width: this.minimal ? "34%" : "100%",
-    height: this.minimal ? "100%" : "34%",
+    height: this.minimal ? "100%" : "38%",
     valign: "middle",
     border: {
       type: "line",
@@ -264,7 +265,7 @@ Dashboard.prototype.layoutStatus = function() {
       left: 1,
     },
     width: this.minimal ? "34%" : "100%",
-    height: this.minimal ? "100%" : "34%",
+    height: this.minimal ? "100%" : "38%",
     valign: "middle",
     border: {
       type: "line",
@@ -281,11 +282,11 @@ Dashboard.prototype.layoutStatus = function() {
     parent: this.wrapper,
     label: "Progress",
     tags: true,
-    padding: this.minimal ? {
-      left: 1,
-    } : 1,
+    padding: {
+      left: 25
+    },
     width: this.minimal ? "33%" : "100%",
-    height: this.minimal ? "100%" : "34%",
+    height: this.minimal ? "100%" : "35%",
     valign: "middle",
     border: {
       type: "line",
@@ -301,7 +302,7 @@ Dashboard.prototype.layoutStatus = function() {
   this.progressbar = blessed.ProgressBar({
     parent: this.progress,
     height: 1,
-    width: "90%",
+    width: "80%",
     top: "center",
     left: "center",
     hidden: this.minimal,
